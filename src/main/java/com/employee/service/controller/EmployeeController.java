@@ -8,9 +8,8 @@ import com.employee.service.domain.Employee;
 import com.employee.service.exception.EmployeeNotFoundException;
 import com.employee.service.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/apis/employees")
@@ -26,7 +25,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/{eId}")
-    public Mono<EmployeeResponse> findById(
+    public ResponseEntity<EmployeeResponse> findById(
             @PathVariable String eId
     ){
         Employee employee = employeeRepository.findById(eId)
@@ -34,36 +33,36 @@ public class EmployeeController {
 
         EmployeeResponse response = new EmployeeResponse();
         modelMapper.map(employee, response);
-        return Mono.just(response);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping
-    public Flux<?> findByDId(
+    public ResponseEntity<?> findByDId(
             @RequestParam String dId
     ) {
-        return Flux.empty();
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping
-    public Mono<Void> create(
+    public ResponseEntity<Void> create(
             @RequestBody CreateEmployeeRequest request
     ) {
-        return Mono.empty();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{eId}")
-    public Mono<Void> create(
+    public ResponseEntity<Void> create(
             @PathVariable String eId,
             @RequestBody UpdateEmployeeRequest request
     ) {
-        return Mono.empty();
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{eId}")
-    public Mono<Void> delete(
+    public ResponseEntity<Void> delete(
             @PathVariable String eId,
             @RequestBody DeleteEmployeeRequest request
     ) {
-        return Mono.empty();
+        return ResponseEntity.ok().build();
     }
 }
