@@ -1,3 +1,4 @@
+CODE_CHANGES = gitChanges()
 pipeline {
     agent any
     parameters {
@@ -9,8 +10,6 @@ pipeline {
     }
     environment {
         NEW_VERSION = '1.3.0'
-        CODE_CHANGES = gitChanges()
-
         // 1. define Credentials in Jenkins UI
         // 2. "credentials("credentials")" binds then credentials to your environment variable
         // 3. for that you need "Credentials Binding" Plugin
