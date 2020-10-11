@@ -5,7 +5,7 @@ pipeline {
         booleanParam(name: 'CheckOrNot', defaultValue: true, description: 'boolean parameter test')
     }
     tools {
-
+        gradle 'Gradle 6.6.1'
     }
     environment {
         NEW_VERSION = '1.3.0'
