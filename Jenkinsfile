@@ -29,20 +29,6 @@ pipeline {
             }
         }
 
-        stage("artifact upload to S3") {
-            when {
-                expression {
-                    BRANCH_NAME == 'master' || BRANCH_NAME == 'dev'
-                }
-            }
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: '', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-                    // some block
-                    sh 'aws s3 ls'
-                }
-            }
-        }
-
         stage("test") {
             when {
                 expression {
