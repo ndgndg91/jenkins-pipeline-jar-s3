@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name: 'VERSION', choice: ['1.0.0', '1.0.1', '1.0.2'], description: 'choice parameter test')
+        choice(name: 'VERSION', choices: ['1.0.0', '1.0.1', '1.0.2'], description: 'choice parameter test')
         booleanParam(name: 'CheckOrNot', defaultValue: true, description: 'boolean parameter test')
     }
     tools {
