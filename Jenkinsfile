@@ -24,7 +24,7 @@ pipeline {
             steps {
                 echo 'building the application..'
                 echo "building version ${NEW_VERSION}"
-                sh 'gradle build --no-daemon'
+                sh 'gradle clean build'
                 archiveArtifacts artifacts: 'build/libs/*.jar', followSymlinks: false
             }
         }
