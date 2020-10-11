@@ -24,6 +24,7 @@ pipeline {
             steps {
                 echo 'building the application..'
                 echo "building version ${NEW_VERSION}"
+                sh 'gradle build --no-daemon'
             }
         }
 
@@ -39,6 +40,11 @@ pipeline {
         }
 
         stage("deploy") {
+            when {
+                expression {
+                    BRANCH_NAME == 'master' || BRANCH_NAME == 'dev'
+                }
+            }
             steps {
                 echo 'deploying the application..'
             }
